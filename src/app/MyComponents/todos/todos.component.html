@@ -1,9 +1,13 @@
-<app-add-todo (todoAdd)="onAddTodo($event)"></app-add-todo>
-<h4 class="mt-4">Your todos list :</h4>
-<div *ngIf="this.todos.length==0; else elseBlock">No todos available</div>
-<ng-template #elseBlock>Content to render when condition is false.
-  <div *ngFor="let todo of todos">
-    <app-todo-item [todo]="todo" (todoDelete)="onDeleteTodo($event)"></app-todo-item>
-  </div>
-</ng-template>
+<div class="container border shadow">
+  <h4 class=" text-center">Todo List by Aayush Basnet</h4>
+  <app-add-todo (todoAdd)="onAddTodo($event)"></app-add-todo>
+  <h4 class="mt-4">Your todos list :</h4>
+  <div *ngIf="this.todos.length==0; else elseBlock">No todos available</div>
+  <ng-template #elseBlock>
+    <div *ngFor="let todo of todos index as i">
+      <app-todo-item [todo]="todo" [labelIndex]="i" (todoDelete)="onDeleteTodo($event)" (todoComplete)="onCompleteTodo($event)"></app-todo-item>
+    </div>
+  </ng-template>
+</div>
+
 
